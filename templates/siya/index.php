@@ -8,9 +8,20 @@
 //                                                                       //
 // Copyright (C) 2010 onwards  Manu Sharma  http://www.opentadka.org     //
 //                                                                       //
+// STUDENT INFORMATION YARN (SIYA)								         //
+//          http://www.siya.org.in                                       //
+//                                                                       //
+// Copyright (C) 2012 onwards  Manu Sharma  http://www.siya.org.in       //
+//                                                                       //
+// OPENTADKA FRAMEWORK LICENSE :                                         //
 // This program is free software; you can redistribute it and/or modify  //
 // it under the terms of the GNU General Public License as published by  //
 // the Free Software Foundation; either version 2 of the License, or     //
+// (at your option) any later version.                                   //
+// STUDENT INFORMATION YARN (SIYA) LICENSE :                             //
+// This program is free software; you can redistribute it and/or modify  //
+// it under the terms of the GNU General Public License as published by  //
+// the Free Software Foundation; either version 3 of the License, or     //
 // (at your option) any later version.                                   //
 //                                                                       //
 // This program is distributed in the hope that it will be useful,       //
@@ -20,133 +31,504 @@
 //                                                                       //
 //          http://www.gnu.org/copyleft/gpl.html                         //
 //                                                                       //
-///////////////////////////////////////////////////////////////////////////
+//   OPENTADKA FRAMEWORK & STUDENT INFORMATION YARN (SIYA)               //
+//   FOR LICENCESPLEASE REFER LICENCE PAGE                               //
+//   FOR MORE DETAILS                                                    //
+//                                                                       //
+////////////////////////////////////////////////////////////////////////////
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <title><?php echo $title_placeholder;?></title>
 
 <meta name="description" content="<?php echo $meta_description_placeholder;?>" />
 <meta name="keywords" content="<?php echo $meta_keywords_placeholder;?>" />
+<script src="<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery.validate.js"></script>
+<script type="text/javascript" src="<?php echo _TEMPLATE_JS_DIR._WS ;?>pdfobject.js"></script>
+<script type="text/javascript" src="<?php echo _TEMPLATE_JS_DIR._WS ;?>swfobject.js"></script>
 
+
+<?php
+if(!isset($_SESSION['controllers']['SELECTEDTHEME']) || $_SESSION['controllers']['SELECTEDTHEME']==''){
+?>
 <link rel="stylesheet" href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>style.css" />
-
-<link rel="stylesheet" href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>jquery.tinycircleslider.css" type="text/css" media="screen"/>
-
-<script>
-function preload(arrayOfImages) {
-$(arrayOfImages).each(function(){
-	$('<img/>')[0].src = this;
-	// Alternatively you could use:
-	// (new Image()).src = this;
-});
+<link rel="stylesheet" href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>blocks.css" />
+<link rel="stylesheet" href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>forms.css" />
+<link rel="stylesheet" href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>tables.css" />
+<link rel="stylesheet" href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>buttons.css" />
+<link rel="stylesheet" href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>cmsmenu.css" />
+<link rel="stylesheet" href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>blogmenu.css" />
+<?php
+}else{
+?>
+<link rel="stylesheet" href="<?php echo _TEMPLATE_THEMES_DIR._WS.$_SESSION['controllers']['SELECTEDTHEME']._WS.'css'._WS; ?>style.css" />
+<link rel="stylesheet" href="<?php echo _TEMPLATE_THEMES_DIR._WS.$_SESSION['controllers']['SELECTEDTHEME']._WS.'css'._WS; ?>blocks.css" />
+<link rel="stylesheet" href="<?php echo _TEMPLATE_THEMES_DIR._WS.$_SESSION['controllers']['SELECTEDTHEME']._WS.'css'._WS; ?>forms.css" />
+<link rel="stylesheet" href="<?php echo _TEMPLATE_THEMES_DIR._WS.$_SESSION['controllers']['SELECTEDTHEME']._WS.'css'._WS; ?>tables.css" />
+<link rel="stylesheet" href="<?php echo _TEMPLATE_THEMES_DIR._WS.$_SESSION['controllers']['SELECTEDTHEME']._WS.'css'._WS; ?>buttons.css" />
+<link rel="stylesheet" href="<?php echo _TEMPLATE_THEMES_DIR._WS.$_SESSION['controllers']['SELECTEDTHEME']._WS.'css'._WS; ?>cmsmenu.css" />
+<link rel="stylesheet" href="<?php echo _TEMPLATE_THEMES_DIR._WS.$_SESSION['controllers']['SELECTEDTHEME']._WS.'css'._WS; ?>blogmenu.css" />
+<?php
 }
+?>
 
-// Usage:
-
-preload([
-    '<?php echo _TEMPLATE_IMG_DIR._WS ;?>bg-rotatescroll.png',
-]);
-
-function preloader() 
-{
-heavyImage = new Image(); 
-heavyImage.src = "<?php echo _TEMPLATE_IMG_DIR._WS ;?>bg-rotatescroll.png";
+<?php
+if($_SESSION['controllers']['SCREENGRID'] == '960'){
+?>
+<link rel="stylesheet" href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>960.css" />
+<?php
+}else if($_SESSION['controllers']['SCREENGRID'] == '1200'){
+?>
+<link rel="stylesheet" href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>1200.css" />
+<?php
 }
-</script>
+?>
 
-	
-	<!--[if lte IE 6]>
-		<style type="text/css">
-		/* Internet Explorer 6 PNG transparency fix */
-		#rotatescroll .overlay { background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="<?php echo _TEMPLATE_IMG_DIR._WS ;?>bg-rotatescroll.png", sizingmethod='scale'); }
-		#rotatescroll .thumb { background: none; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="<?php echo _TEMPLATE_IMG_DIR._WS ;?>bg-thumb.png", sizingmethod='scale'); }
-		</style>
-	<![endif]-->
-	
-	<script type="text/javascript" src="<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery.min.js"></script>
-	<script type="text/javascript" src="<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery.tinycircleslider.min.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-		$('#rotatescroll').tinycircleslider({ 'interval': true, snaptodots: true, radius: 290, intervaltime: 6000 });	
-		});
-	</script>	
+<!-- Admin Menu -->
+<link href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>dcaccordion.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>dcdrilldownskins/blue.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>dcdrilldownskins/graphite.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>dcdrilldownskins/grey.css" rel="stylesheet" type="text/css" />
+<script type='text/javascript' src='<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery.cookie.js'></script>
+<script type='text/javascript' src='<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery.hoverIntent.minified.js'></script>
+<script type='text/javascript' src='<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery.dcjqaccordion.2.7.min.js'></script>
+
+<!-- Admin Menu --> 
+
+
+<!-- Tooltip -->
+<script src="<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery.cluetip.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>jquery.cluetip.css" />
+<!-- Tooltip -->
+
+<!-- Menu -->
+<script type="text/javascript" src="<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery.easing-sooper.js"></script>
+<script type="text/javascript" src="<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery.sooperfish.js"></script>
+<!-- Menu -->
+
+
+<!-- JQuery Date Picker -->
+<link rel="stylesheet" href="<?php echo _TEMPLATE_CSS_DIR._WS ;?>jquery/jquery.ui.all.css">
+<script src="<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery/ui/jquery.ui.core.js"></script>
+<script src="<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery/ui/jquery.ui.widget.js"></script>
+<script src="<?php echo _TEMPLATE_JS_DIR._WS ;?>jquery/ui/jquery.ui.datepicker.js"></script>
+<!-- JQuery Date Picker -->
+
 
 <?php MainSystem::IncludeMainJSFunctions(); ?>
 <?php MainSystem::IncludeMainAjaxFunctions(); ?>
+<?php MainSystem::IncludeModulesCSS(); ?>
+<?php MainSystem::IncludeBlocksCSS(); ?>
+
+<?php MainSystem::IncludeModulesJS(); ?>
+<?php MainSystem::IncludeBlocksJS(); ?>
+
+
+
+<script type="text/javascript">
+$(function() {
+$('#sticky').cluetip({sticky: true, closePosition: 'title', arrows: true});
+});
+</script>
 
 </head>
+<body>
+<?php
+//echo $lang['siya']['entities']['ADD_NEW_ENTITY'];
+?>
 
-<body onLoad="javascript:preloader();">
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td valign="top"><table width="100%" border="0" cellpadding="1" cellspacing="1" bgcolor="#000000">
-      <tr>
-        <td><table width="100%" border="0" bgcolor="#CA6262">
-          <tr>
-            <td width="12%" valign="top"><img src="<?php echo _TEMPLATE_IMG_DIR._WS ;?>siya_logo.gif" alt="Open Source Student Information Management System"/></td>
-            <td width="88%" valign="top"><table width="100%" border="0">
-                <tr>
-                  <td><h1 class="whitetext">STUDENT INFORMATION YARN (SIYA) <br />
-                    An Open Source Student Information Management System based on OPENTADKA <sup>TM</sup> Framework</h1></td>
-                </tr>
-<tr>
-<td><table width="100%" border="0" bgcolor="#CB9865" class="whitetext">
-<tr class="whitetext">
-<tr>
-<td width="20%" bgcolor="#993333"><div align="center"><a class="whitetext" href="http://www.siya.org.in/"><span class="style4">SIYA Project Home</span></a></div></td>
-<td width="20%" bgcolor="#993333"><div align="center"><a class="whitetext" href="http://docs.siya.org.in/"><span class="style4">SIYA Documenation Home</span></a></div></td>
-<td width="20%" bgcolor="#993333"><div align="center"><a class="whitetext" href="http://preview.siya.org.in/"><span class="style4">SIYA Preview</span></a></div></td>
-<td width="20%" bgcolor="#993333"><div align="center"><a class="whitetext" href="http://code.siya.org.in/"><span class="style4">SIYA Source Code Home</span></a></div></td>
-</tr>
-</tr>
-</table></td>
-</tr>
-</table>
-</td>
-</tr>
-</table></td>
-</tr>
-</table>
-</td>
-  </tr><tr>
-    <td><table width="100%" border="0">
-      <tr>
-        <td>
-<!-- 		<h1>STUDENT INFORMATION YARN (SIYA) - A First Look</h1><hr />
- -->		<?php //echo $circleslider_placeholder; ?>
+<?php
+if($_SESSION['controllers']['SCREENGRID'] == '960'){
+?>
+<!-- start .container_16 -->
+
+<div class="container_16" id="container_16">
+<div class="grid_16">
+<?php echo $maincontrollersblock_placeholder; ?>
+</div>
+<div class="clear"></div>
+
+  <?php
+  if(!$HIDE_TEMPLATE_HEADER_PART){
+  ?>
+
+  <div class="grid_16">
+
+
+	<div>
+	<h1 class="logoclass">
+	<span class="logotext"></span> <br />
+    <span class="logotext2"></span></h1>
+	</div>
+  
+		<?php echo $header_blocks_placeholder; ?>
+		<br /><br /><br />
+
+		<?php echo $opentadka_header_navigation_placeholder; ?>
 		<br />
-		<div id="<?php echo PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE; ?>"><?php echo $main_content_placeholder; ?></div>
 		<br />
-		</td>
-      </tr>
-    </table></td>
-  </tr>
-  <tr>
-    <td valign="top" bgcolor="#000000"><table width="100%" border="0" cellpadding="2" cellspacing="2">
-        <tr>
-          <td valign="top" bgcolor="#993333" class="whitetext"><table width="100%" border="0">
-              <tr>
-                <td><h3 class="whitetextbold"><a href="http://www.open.org.in"><img src="<?php echo _TEMPLATE_IMG_DIR._WS ;?>open_org_logo_small.gif" alt="Open.Org.In" border="0" /></a></h3></td>
-                <td><span class="whitetextbold">Open Source India<br />
-(open.org.in)<br />
-                </span></td>
-              </tr>
-          </table></td>
-          <td valign="top" bgcolor="#333333" class="whitetext"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td><span class="whitetextbold"><img src="<?php echo _TEMPLATE_IMG_DIR._WS ;?>saturn.png" alt="Saturn" border="0" />S A T U R N<br />Powered by OPENTADKA Framework</span><br />
-Copyright &copy; 2010 onwards, Manu Sharma<br />STUDENT INFORMATION YARN (SIYA) Project Copyright &copy; 2012 onwards, Manu Sharma<br />[For Copyright and Licences, Please refer to the <a href="#" class="whitetext">Licence</a>]</td>
-              <td><div align="right"><a href="http://www.opentadka.org" target="_blank"><img src="<?php echo _TEMPLATE_IMG_DIR._WS ;?>opentadkalogo.gif" alt="OPENTADKA Framework" width="93" height="148" border="0" /></a></div></td>
-            </tr>
-          </table>          </td>
-        </tr>
-    </table></td>
-  </tr>
-</table>
+
+  </div>
+
+  <div class="clear"></div>
+
+	<?php
+	 }
+	?>
+
+
+	<?php
+	if(!$HIDE_TEMPLATE_LEFT_PART){
+	?>
+  
+  <div class="grid_4">
+
+	<?php echo $left_blocks_placeholder; ?>
+
+  </div>
+
+	<?php
+	}
+	?>
+
+	<div class="<?php echo $middle_div_class; ?>">
+
+	<?php
+	if(!$HIDE_TEMPLATE_BEFOREMIDDLECONTENT_PART){
+	?>
+
+	<?php echo $beforemiddlecontent_blocks_placeholder; ?>
+
+	<?php
+	}
+	?>
+
+		<?php echo $session_message_placeholder; ?>
+		<?php echo $login_box_placeholder; ?>
+		<div id="<?php echo PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE; ?>">
+
+
+		<?php
+		if($secondcolumntrue==1){
+		?>
+		<div class="<?php echo $middle_div_2_columns_class; ?>">
+		<?php echo $main_content_placeholder; ?>
+		<?php
+		if($main_contentmore_url_placeholder !=''){
+		?>
+		<br /><a href="<?php echo $main_contentmore_url_placeholder; ?>"class="button small" >Read More</a>
+		<?php
+		}
+		?>
+		</div>
+
+		<div class="<?php echo $middle_div_2_columns_class; ?>">
+		<?php echo $main_content2_placeholder; ?>
+		
+		<?php
+		if($main_content2more_url_placeholder !=''){
+		?>
+		<br /><a href="<?php echo $main_content2more_url_placeholder; ?>"class="button small" >Read More</a>
+		<?php
+		}
+		?>
+		</div>
+
+		<?php
+		}else{
+		?>
+		<div class="<?php echo $middle_div_2_columns_class; ?>">
+		<?php echo $main_content_placeholder; ?>
+		<?php
+		if($main_contentmore_url_placeholder !='' && $moreid ==''){
+		?>
+		<br /><a href="<?php echo $main_contentmore_url_placeholder; ?>"class="button small" >Read More</a>
+		<?php
+		}
+		?>
+		</div>
+
+		<div class="<?php echo $middle_div_2_columns_class; ?>">
+		<?php echo $main_content2_placeholder; ?>
+		
+		<?php
+		if($main_content2more_url_placeholder !='' && $moreid ==''){
+		?>
+		<br /><a href="<?php echo $main_content2more_url_placeholder; ?>"class="button small" >Read More</a>
+		<?php
+		}
+		?>
+		</div>
+
+		<?php 
+		if($moreid == 'm1'){
+		echo $main_contentmore_placeholder;
+		?>
+		<br /><a href="<?php echo $main_contentmore_back_url_placeholder; ?>"class="button small" >Back</a>
+		<?php
+		}
+		?>
+		<?php 
+		if($moreid == 'm2'){
+		echo $main_content2more_placeholder;
+		?>
+		<br /><a href="<?php echo $main_content2more_back_url_placeholder; ?>"class="button small" >Back</a>
+		<?php
+		}
+		?>
+
+		<?php
+		}
+		?>
+
+
+		</div>
+		<br />
+		<br />
+		<br />
+
+
+	<?php
+	if(!$HIDE_TEMPLATE_AFTERMIDDLECONTENT_PART){
+	?>
+
+	<?php echo $aftermiddlecontent_blocks_placeholder; ?>
+
+	<?php
+	}
+	?>
+
+	</div>
+
+
+	<?php
+	if(!$HIDE_TEMPLATE_RIGHT_PART){
+	?>
+	  <div class="grid_4">
+		<?php echo $right_blocks_placeholder; ?>
+	  </div>
+
+	<?php
+	}
+	?>
+
+  <div class="clear"></div>
+
+	<?php
+	if(!$HIDE_TEMPLATE_FOOTER_PART){
+	?>
+  <div class="grid_16">
+  <br /><br />
+   <?php echo $opentadka_footer_navigation_placeholder; ?>
+
+  </div>
+  <?php
+	}
+  ?>
+
+</div>
+<!-- end .container_16 -->
+
+<?php
+}else if($_SESSION['controllers']['SCREENGRID'] == '1200'){
+?>
+
+
+<!-- start .container_15 -->
+
+<div class="container_15" id="container_15">
+<div class="grid_15">
+<?php echo $maincontrollersblock_placeholder; ?>
+</div>
+<div class="clear"></div>
+
+  <?php
+  if(!$HIDE_TEMPLATE_HEADER_PART){
+  ?>
+
+  <div class="grid_15">
+
+
+	<div>
+	<h1 class="logoclass">
+	<span class="logotext"></span> <br />
+    <span class="logotext2"></span></h1>
+	</div>
+  
+		<?php echo $header_blocks_placeholder; ?>
+		<br /><br /><br />
+
+		<?php echo $opentadka_header_navigation_placeholder; ?>
+		<br />
+		<br />
+
+  </div>
+
+  <div class="clear"></div>
+
+	<?php
+	 }
+	?>
+
+
+	<?php
+	if(!$HIDE_TEMPLATE_LEFT_PART){
+	?>
+  
+  <div class="grid_3">
+
+	<?php echo $left_blocks_placeholder; ?>
+
+  </div>
+
+	<?php
+	}
+	?>
+
+	<div class="<?php echo $middle_div_class; ?>">
+
+	<?php
+	if(!$HIDE_TEMPLATE_BEFOREMIDDLECONTENT_PART){
+	?>
+
+	<?php echo $beforemiddlecontent_blocks_placeholder; ?>
+
+	<?php
+	}
+	?>
+
+		<?php echo $session_message_placeholder; ?>
+		<?php echo $login_box_placeholder; ?>
+		<div id="<?php echo PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE; ?>">
+
+<?php
+		if($secondcolumntrue==1){
+		?>
+		<div class="<?php echo $middle_div_2_columns_class; ?>">
+		<?php echo $main_content_placeholder; ?>
+		<?php
+		if($main_contentmore_url_placeholder !=''){
+		?>
+		<br /><a href="<?php echo $main_contentmore_url_placeholder; ?>"class="button small" >Read More</a>
+		<?php
+		}
+		?>
+		</div>
+
+		<div class="<?php echo $middle_div_2_columns_class; ?>">
+		<?php echo $main_content2_placeholder; ?>
+		
+		<?php
+		if($main_content2more_url_placeholder !=''){
+		?>
+		<br /><a href="<?php echo $main_content2more_url_placeholder; ?>"class="button small" >Read More</a>
+		<?php
+		}
+		?>
+		</div>
+
+		<?php
+		}else{
+		?>
+		<div class="<?php echo $middle_div_2_columns_class; ?>">
+		<?php echo $main_content_placeholder; ?>
+		<?php
+		if($main_contentmore_url_placeholder !='' && $moreid ==''){
+		?>
+		<br /><a href="<?php echo $main_contentmore_url_placeholder; ?>"class="button small" >Read More</a>
+		<?php
+		}
+		?>
+		</div>
+
+		<div class="<?php echo $middle_div_2_columns_class; ?>">
+		<?php echo $main_content2_placeholder; ?>
+		
+		<?php
+		if($main_content2more_url_placeholder !='' && $moreid ==''){
+		?>
+		<br /><a href="<?php echo $main_content2more_url_placeholder; ?>"class="button small" >Read More</a>
+		<?php
+		}
+		?>
+		</div>
+
+		<?php 
+		if($moreid == 'm1'){
+		echo $main_contentmore_placeholder;
+		?>
+		<br /><a href="<?php echo $main_contentmore_back_url_placeholder; ?>"class="button small" >Back</a>
+		<?php
+		}
+		?>
+		<?php 
+		if($moreid == 'm2'){
+		echo $main_content2more_placeholder;
+		?>
+		<br /><a href="<?php echo $main_content2more_back_url_placeholder; ?>"class="button small" >Back</a>
+		<?php
+		}
+		?>
+
+		<?php
+		}
+		?>
+		
+		
+		</div>
+		<br />
+		<br />
+		<br />
+
+	<?php
+	if(!$HIDE_TEMPLATE_AFTERMIDDLECONTENT_PART){
+	?>
+
+	<?php echo $aftermiddlecontent_blocks_placeholder; ?>
+
+	<?php
+	}
+	?>
+
+	</div>
+
+
+	<?php
+	if(!$HIDE_TEMPLATE_RIGHT_PART){
+	?>
+	  <div class="grid_3">
+		<?php echo $right_blocks_placeholder; ?>
+	  </div>
+
+	<?php
+	}
+	?>
+
+  <div class="clear"></div>
+
+	<?php
+	if(!$HIDE_TEMPLATE_FOOTER_PART){
+	?>
+  <div class="grid_15">
+  <br /><br />
+   <?php echo $opentadka_footer_navigation_placeholder; ?>
+
+  </div>
+  <?php
+	}
+  ?>
+
+</div>
+<!-- end .container_15 -->
+
+
+<?php
+}
+?>
 </body>
 </html>

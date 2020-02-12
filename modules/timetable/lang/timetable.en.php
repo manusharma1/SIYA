@@ -1,0 +1,22 @@
+<?php
+$lang['siya']['timetable']['SUBJECT_REGISTRATION'] = 'Subject Registration';
+$lang['siya']['timetable']['UPDATE_TIME_TABLE'] = 'Update Time Table';
+$lang['siya']['timetable']['SORRY_PERIOD_CANNOT_BE_SAVED_AS_A_PERIOD_WITH_SAME_DAY_TIME_BATCH_AND_SESSION_EXISTS'] = 'SORRY Period Cannot be saved as a period with same Day, Time, Batch and Session exists, Try Changing the Time as it may conflicting with other period of the same Batch/Session and Group, Day and Time';
+$lang['siya']['timetable']['PERIOD_SAVED'] = 'Period Saved';
+$lang['siya']['timetable']['EDIT_PERIOD'] = 'Edit Period';
+$lang['siya']['timetable']['UPDATE_TIMETABLE'] = 'Update Timetable';
+$lang['siya']['timetable']['PERIOD_CANNOT_BE_SAVED'] = 'Period cannot be Saved';
+$lang['siya']['timetable']['ERROR_PERIOD_CANNOT_BE_SAVED'] = 'ERROR : Period Cannot be Saved';
+$lang['siya']['timetable']['TIME_TABLE_SAVED'] = 'Time Table Saved';
+$lang['siya']['timetable']['TIME_TABLE_CANNOT_BE_SAVED'] = 'Time Table cannot be Saved';
+$lang['siya']['timetable']['ERROR_TIME_TABLE_CANNOT_BE_SAVED'] = 'ERROR : Time Table Cannot be Saved';
+$lang['siya']['timetable']['TITLE'] = 'Title';
+$lang['siya']['timetable']['START_TIME'] = 'Start Time';
+$lang['siya']['timetable']['END_TIME'] = 'End Time ';
+$lang['siya']['timetable']['DAYS'] = 'Days';
+$lang['siya']['timetable']['STATUS_CHANGED']='Status Changed';
+$lang['siya']['timetable']['MANAGE_PERIODS'] = 'manage periods';
+$lang['siya']['timetable']['PERIOD_NUMBER'] = 'Period';
+$lang['siya']['timetable']['THIS_PERIOD_NUMBER_ALREADY_EXITS'] = 'this period number already exits';
+$lang['siya']['timetable']['DELETE']='Delete';
+$lang['siya']['timetable']['EDIT']='Edit';

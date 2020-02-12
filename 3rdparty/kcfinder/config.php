@@ -25,8 +25,11 @@ $_CONFIG = array(
 
     'theme' => "oxygen",
 
-    'uploadURL' => 'http://www.danekirbyforsheriff.com/uploads/',
-    'uploadDir' => 'D:\wamp\www\danekirbyforsheriff\uploads',
+    //'uploadURL' => 'http://www.danekirbyforsheriff.com/uploads/',
+    //'uploadDir' => 'D:\wamp\www\danekirbyforsheriff\uploads',
+
+    'uploadURL' => 'http://localhost/siya/siyauploads/',
+    'uploadDir' => 'D:\wamp\www\siya\siyauploads',
 
     'dirPerms' => 0755,
     'filePerms' => 0644,

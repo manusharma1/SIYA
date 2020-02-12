@@ -60,23 +60,40 @@
 
 ?>
 
+	<script>
+	$(document).ready(function(){
+	$("#formaddmenu").validate();
+	});
+	</script>
+	
+	<?php
+	if(PROJ_RUN_AJAX==1){
+	$formaction = MainSystem::URLCreator('cms/saveMenu/','ajax','post','',PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE,false);
+	}else{
+	$formaction = MainSystem::URLCreator('cms/saveMenu/');
+	}
+	?>
 
+	<form id="formaddmenu" name="formaddmenu" method="post" action="<?php echo $formaction; ?>">
 
-<form id="addnewpage" name="addnewpage" method="post" action="<?php echo MainSystem::URLCreator('cms/saveMenu/') ?>">
-<table width="100%" border="0" bgcolor="#CC9933">
-  <tr>
-    <td width="17%" bgcolor="#CCCC66">Menu Name </td>
-    <td width="83%" bgcolor="#CCCC66"><input type="text" name="name" size="95"/></td>
-  </tr>
+	<fieldset>
+	<legend><?php echo $lang['siya']['cms']['ADD_NEW_MENU'];?></legend>	
+	<ol>
+		<li>
+		<label for="menuname"><?php echo $lang['siya']['cms']['MENU_NAME']; ?> </label>
+		<input type="text" name="name" size="30" <?php echo _FORM_FINAL; ?> />
+		</li>
 
-    <tr>
-    <td width="17%" bgcolor="#CCCC66">Parent Menu </td>
-    <td width="83%" bgcolor="#CCCC66"><?php echo $menu_placeholder; ?></td>
-  </tr>
+		<li>
+		<label for="parentmenuname"><?php echo $lang['siya']['cms']['PARENT_MENU'];?> </label>
+		<?php echo $menu_placeholder; ?>
 
-  <tr>
-    <td colspan="2" bgcolor="#CCCC66" align="center"><input type="Submit" name="Submit" value="Add New Menu" /></td>
-  </tr>
+		</ol>
 
-</table>
-</form>
+	<fieldset>
+
+	<button type="submit"><?php echo $lang['siya']['cms']['SAVE'];?></button>
+
+	</fieldset>
+
+	</form>

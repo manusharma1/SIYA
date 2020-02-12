@@ -1,43 +1,60 @@
-<!-- page specific scripts -->
-<script type="text/javascript" charset="utf-8">
-	$(function()
-	{
-		Date.format = 'mm/dd/yyyy';
-		$('#newsdate').datePicker({autoFocusNextInput: true});
-	});
+<script>
+$(function() {
+	$( "#newsdate" ).datepicker();
+});
+</script>
+<?php
+if(PROJ_RUN_AJAX==1){
+if(isset($_SESSION['message'])){
+echo $_SESSION['message'];
+}
+}
+?>
+
+<script>
+$(document).ready(function(){
+$("#addnewnewsform").validate();
+});
 </script>
 
-<form id="addnewnews" name="addnewnews" method="post" action="<?php echo MainSystem::URLCreator('news/saveNews/') ?>" onsubmit="return JSMainFunction();">
-<table width="100%" border="0" bgcolor="#CC9933">
-  <tr>
-    <td width="17%" bgcolor="#CCCC66">News Title </td>
-    <td width="83%" bgcolor="#CCCC66"><input type="text" name="newstitle" id="newstitle" size="95" title="News Title"/></td>
-  </tr>
+	
+	<?php
+	if(PROJ_RUN_AJAX==1){
+	$formaction = MainSystem::URLCreator('news/saveNews/','ajax','post','',PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE,false);
+	}else{
+	$formaction = MainSystem::URLCreator('news/saveNews/');
+	}
+	?>
 
-   <tr>
-    <td bgcolor="#CCCC66">News Text </td>
-    <td bgcolor="#CCCC66"><textarea name="newstext" id="newstext" cols="73" width="5" title="News Text"></textarea></td>
-  </tr>
+	<form id="addnewnewsform" name="addnewnewsform" method="post" action="<?php echo $formaction; ?>">
+	
+	<fieldset>
+	<legend>Add News</legend>	
+		<ol>
+		<li>
+		<label for="newstitle"><?php echo $lang['siya']['news']['NEWS_TITLE'];?></label>
+		<input type="text" name="newstitle" id="newstitle" size="30" title="<?php echo $lang['siya']['news']['NEWS_TITLE'];?>" <?php echo _FORM_FINAL; ?>/>
+		</li>
 
-  <tr>
-    <td width="17%" bgcolor="#CCCC66">News Date </td>
-    <td width="83%" bgcolor="#CCCC66"><input type="text" name="newsdate" id="newsdate" class="date-pick">
-</td>
-  </tr>
 
-  <tr>
-    <td colspan="2" bgcolor="#CCCC66" align="center"><input type="Submit" name="Submit" value="Add New News" /></td>
-  </tr>
+		
+		<li>
+		<label for="newstext"><?php echo $lang['siya']['news']['NEWS_TEXT'];?></label>
+		<textarea name="newstext" id="newstext" title="<?php echo $lang['siya']['news']['NEWS_TEXT'];?>" rows="5" autofocus=""  <?php echo _FORM_FINAL; ?>></textarea>
+		</li>
 
-</table>
+		
+		<li>
+		<label for="newstext"><?php echo $lang['siya']['news']['NEWS_DATE'];?></label>
+		<input type="text" name="newsdate" id="newsdate" title="<?php echo $lang['siya']['news']['NEWS_DATE'];?>" <?php echo _FORM_FINAL; ?>/>
+		</li>
+
+		</ol>
+
+<fieldset>
+
+<button type="submit">Save</button>
+
+</fieldset>
+
 </form>
-
-<?php
-$HTMLObj = new MainHTML();
-$htmlarray = array();
-
-$htmlarray[]['js']['js'] = 'notempty=newstitle,newstext,newsdate:onsubmit=addnewnews:alert:default';
-$validation = $HTMLObj->HTMLCreator($htmlarray);
-
-echo $validation;
-?>

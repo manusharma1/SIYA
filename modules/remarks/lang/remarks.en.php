@@ -1,0 +1,21 @@
+<?php
+$lang['siya']['remarks']['ADD_ASSESSMENTS'] = 'Add Assessments';
+$lang['siya']['remarks']['SHOW_REMARK'] = 'Show Remark';
+$lang['siya']['remarks']['REMARKS_SAVED'] = 'Remarks Saved';
+$lang['siya']['remarks']['REMARKS_CANNOT_BE_SAVED'] = 'Remarks cannot be Saved';
+$lang['siya']['remarks']['ERROR_:_REMARKS_CANNOT_BE_SAVED'] = 'ERROR : Remarks Cannot be Saved';
+$lang['siya']['remarks']['MANAGE_REMARK'] = 'Manage Remark';
+$lang['siya']['remarks']['EDIT_REMARK'] = 'Edit Remark';
+$lang['siya']['remarks']['REMARK_STATUS_CHANGED'] = 'Remark Status Changed';
+$lang['siya']['remarks']['DELETE_A_PAGE'] = 'Delete a Page';
+$lang['siya']['remarks']['MESSAGE_TITLE'] = 'Message Title';
+$lang['siya']['remarks']['MESSAGE'] = 'Message';
+$lang['siya']['remarks']['REMARKS_STATUS'] = 'Remarks Status';
+$lang['siya']['remarks']['REMARKS_PRIORITY'] = 'Remarks Priority';
+$lang['siya']['remarks']['REMARKS_FOR'] = 'Remarks For';
+$lang['siya']['remarks']['REMARKS_BY'] = 'Remarks By';
+$lang['siya']['remarks']['REMARKS_STATUS_CHANGED'] = 'Remark(s) Status Changed';
+$lang['siya']['remarks']['REMARK_STATUS_CHANGED'] = 'Remark Status Changed';
+$lang['siya']['remarks']['REMARKS_DELETED'] = 'Remark(s) Deleted';
+$lang['siya']['remarks']['EDIT']='Edit' ;
+$lang['siya']['remarks']['DELETE']='Delete';

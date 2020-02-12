@@ -1,4 +1,4 @@
-<?php
+<?php
 ///////////////////////////////////////////////////////////////////////////
 //                                                                       //
 // NOTICE OF COPYRIGHT  - DO NOT REMOVE THIS NOTICE                      //
@@ -8,9 +8,20 @@
 //                                                                       //
 // Copyright (C) 2010 onwards  Manu Sharma  http://www.opentadka.org     //
 //                                                                       //
+// STUDENT INFORMATION YARN (SIYA)								         //
+//          http://www.siya.org.in                                       //
+//                                                                       //
+// Copyright (C) 2012 onwards  Manu Sharma  http://www.siya.org.in       //
+//                                                                       //
+// OPENTADKA FRAMEWORK LICENSE :                                         //
 // This program is free software; you can redistribute it and/or modify  //
 // it under the terms of the GNU General Public License as published by  //
 // the Free Software Foundation; either version 2 of the License, or     //
+// (at your option) any later version.                                   //
+// STUDENT INFORMATION YARN (SIYA) LICENSE :                             //
+// This program is free software; you can redistribute it and/or modify  //
+// it under the terms of the GNU General Public License as published by  //
+// the Free Software Foundation; either version 3 of the License, or     //
 // (at your option) any later version.                                   //
 //                                                                       //
 // This program is distributed in the hope that it will be useful,       //
@@ -20,17 +31,21 @@
 //                                                                       //
 //          http://www.gnu.org/copyleft/gpl.html                         //
 //                                                                       //
-//////////////////////////////////////////////////////////////////////////
-
-final class DBSelector
-{
-    public static function selectDB($dbtype)
-    {
-        if (require_once('db/' . $dbtype . '.db.php')) {
-            $dbclassname = $dbtype. '_DBConnection';
-            return $dbclassname;
-        } else {
-            trigger_error('Database File not found');
-        }
-    }
-}
+//   OPENTADKA FRAMEWORK & STUDENT INFORMATION YARN (SIYA)               //
+//   FOR LICENCESPLEASE REFER LICENCE PAGE                               //
+//   FOR MORE DETAILS                                                    //
+//                                                                       //
+///////////////////////////////////////////////////////////////////////////
+
+final class DBSelector
+{
+    public static function selectDB($dbtype)
+    {
+        if (require_once('db/' . $dbtype . '.db.php')) {
+            $dbclassname = $dbtype. '_DBConnection';
+            return $dbclassname;
+        } else {
+            trigger_error('Database File not found');
+        }
+    }
+}

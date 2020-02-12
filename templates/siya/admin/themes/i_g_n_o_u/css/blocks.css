@@ -1,0 +1,29 @@
+.boxstyle0{
+width:220px;
+height:45px;
+background : url(../images/ignou_bg.png) no-repeat 0 0;
+margin-left:1px;
+margin-right:1px;
+display: block;
+}
+
+.boxstyle1{
+width:220px; 
+border:1px solid #7FAAFF;
+background-color: #7FAAFF;
+}
+
+.boxstyle2{
+width:220px; 
+height:55px; 
+color:#2D2D2D;
+font-weight:bold;
+background-color: #7FAAFF;
+}
+
+.boxstyle3{
+width:220px; 
+color:#2D2D2D;
+font-weight:normal;
+background-color: #FFFFFF;
+}

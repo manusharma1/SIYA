@@ -1,5 +1,12 @@
 <?php
 	$id = _ACTION_VIEW_PARAMETER_ID;
+	
+	MainSystem::CheckIDExists('menu','id',$id,'cms/manageMenus/');
+
+	$accessreturnmessage = MainSystem::CheckOtherUsersActionAccess('menu','addedby',$id);
+	if($accessreturnmessage != 'OK'){
+	MainSystem::URLForwarder(MainSystem::URLCreator('errorhandler/displayError/'.$accessreturnmessage.'/'));
+	}
 
 	// Define PlaceHolders
 	$menu_name_placeholder = '';
@@ -23,8 +30,8 @@
 	trigger_error('Data Fetch Error');
 	}
 	}else{ // if Menu Doesn't Exists
-	$_SESSION['message'] = 'Menu Does Not Exists';
-	MainSystem::URLForwarder(MainSystem::URLCreator('cms/getAdminArea/'));
+	$_SESSION['message'] = $lang['siya']['cms']['MESSAGE'];
+	MainSystem::URLForwarder(MainSystem::URLCreator('cms/manageMenus/'));
 	}
 	}else{
 	trigger_error('SQL Error');
@@ -93,23 +100,50 @@
 
 	$parent_menu_placeholder = $HTMLObj->HTMLCreator($htmlarray);
 
+
+	if(isset($_POST) && isset($_POST['issubmit'])){
+	$menu_name_placeholder = (isset($_POST['name']))?$_POST['name']:'';
+
+	}
+
 ?>
 
+	<script>
+	$(document).ready(function(){
+	$("#formeditmenu").validate();
+	});
+	</script>
+	
+	<?php
+	if(PROJ_RUN_AJAX==1){
+	$formaction = MainSystem::URLCreator('cms/saveMenu/'.$id.'/','ajax','post','',PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE,false);
+	}else{
+	$formaction = MainSystem::URLCreator('cms/saveMenu/'.$id.'/');
+	}
+	?>
 
+	<form id="formeditmenu" name="formeditmenu" method="post" action="<?php echo $formaction; ?>">
 
-<form id="editmenu" name="editmenu" method="post" action="<?php echo MainSystem::URLCreator('cms/saveMenu/'.$id.'/') ?>">
-<table width="100%" border="0" bgcolor="#CC9933">
-  <tr>
-    <td width="17%" bgcolor="#CCCC66">Menu Name </td>
-    <td width="83%" bgcolor="#CCCC66"><input type="text" name="name" size="95" value="<?php echo $menu_name_placeholder; ?>" /></td>
-  </tr>
-  <tr>
-  <td width="17%" bgcolor="#CCCC66">Parent Menu </td>
-    <td width="83%" bgcolor="#CCCC66"><?php echo $parent_menu_placeholder; ?></td>
-  </tr>
-  <tr>
-    <td colspan="2" bgcolor="#CCCC66" align="center"><input type="Submit" name="Submit" value="Save Menu" /></td>
-  </tr>
+	
+	<fieldset>
+	<legend><?php echo $lang['siya']['cms']['EDIT_MENU'];?></legend>	
+	<ol>
+		<li>
+		<label for="name"><?php  echo $lang['siya']['cms']['MENU_NAME']; ?></label>
+		<input type="text" name="name" size="30" value="<?php echo $menu_name_placeholder; ?>" <?php echo _FORM_FINAL; ?> />
+		</li>
+		
+		<li>
+		<label for="parentmenu"><?php echo $lang['siya']['cms']['PARENT_MENU']; ?> </label>
+		<?php echo $parent_menu_placeholder; ?>
+		</li>
 
-</table>
-</form>
+	</ol>
+
+	<fieldset>
+
+	<button type="submit"><?php echo $lang['siya']['cms']['SAVE'];?></button>
+
+	</fieldset>
+
+	</form>

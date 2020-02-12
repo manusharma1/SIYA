@@ -1,5 +1,13 @@
 <?php
 	$id = _ACTION_VIEW_PARAMETER_ID; // Page ID //
+	
+	MainSystem::CheckIDExists('additionalsettings','id',$id,'admin/getAdminHome/');
+
+	$accessreturnmessage = MainSystem::CheckOtherUsersActionAccess('additionalsettings','addedby',$resultset->id);
+	if($accessreturnmessage != 'OK'){
+	MainSystem::URLForwarder(MainSystem::URLCreator('errorhandler/displayError/'.$accessreturnmessage.'/'))
+	}
+	
 	$_SESSION['deleteconfirmed'] = $id;
 	// Define Placeholders
 	$additionalsetting_name_placeholder = '';

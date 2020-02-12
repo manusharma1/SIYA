@@ -7,9 +7,20 @@
 //                                                                       //
 // Copyright (C) 2010 onwards  Manu Sharma  http://www.opentadka.org     //
 //                                                                       //
+// STUDENT INFORMATION YARN (SIYA)								         //
+//          http://www.siya.org.in                                       //
+//                                                                       //
+// Copyright (C) 2012 onwards  Manu Sharma  http://www.siya.org.in       //
+//                                                                       //
+// OPENTADKA FRAMEWORK LICENSE :                                         //
 // This program is free software; you can redistribute it and/or modify  //
 // it under the terms of the GNU General Public License as published by  //
 // the Free Software Foundation; either version 2 of the License, or     //
+// (at your option) any later version.                                   //
+// STUDENT INFORMATION YARN (SIYA) LICENSE :                             //
+// This program is free software; you can redistribute it and/or modify  //
+// it under the terms of the GNU General Public License as published by  //
+// the Free Software Foundation; either version 3 of the License, or     //
 // (at your option) any later version.                                   //
 //                                                                       //
 // This program is distributed in the hope that it will be useful,       //
@@ -19,7 +30,11 @@
 //                                                                       //
 //          http://www.gnu.org/copyleft/gpl.html                         //
 //                                                                       //
-//////////////////////////////////////////////////////////////////////////
+//   OPENTADKA FRAMEWORK & STUDENT INFORMATION YARN (SIYA)               //
+//   FOR LICENCESPLEASE REFER LICENCE PAGE                               //
+//   FOR MORE DETAILS                                                    //
+//                                                                       //
+///////////////////////////////////////////////////////////////////////////
 
 var element;
 var errvalue;
@@ -121,4 +136,13 @@ return false;
 }
 }
 
+}
+
+
+checked = false;
+function checkAll(element) {
+if (checked == false){checked = true}else{checked = false}
+for (var i = 0; i < document.getElementById(element).elements.length; i++) {
+document.getElementById(element).elements[i].checked = checked;
+}
 }

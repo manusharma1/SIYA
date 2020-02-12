@@ -1,0 +1,32 @@
+<?php
+$lang['siya']['payments']['ADD_PAYMENT'] = 'Add Payment';
+$lang['siya']['payments']['ADD_PAYMENT_TYPE'] = 'Add Payment Type';
+$lang['siya']['payments']['SHOW_PAYMENT'] = 'Show Payment';
+$lang['siya']['payments']['PAYMENT_SAVED'] = 'Payment Saved';
+$lang['siya']['payments']['PAYMENT_CANNOT_BE_SAVED'] = 'Payment cannot be Saved';
+$lang['siya']['payments']['ERROR_:_PAYMENT_CANNOT_BE_SAVED'] = 'ERROR : Payment Cannot be Saved';
+$lang['siya']['payments']['PAYMENT_TYPE_SAVED'] = 'Payment Type Saved';
+$lang['siya']['payments']['PAYMENT_TYPE_CANNOT_BE_SAVED'] = 'Payment Type cannot be Saved';
+$lang['siya']['payments']['ERROR_:_PAYMENT_TYPE_CANNOT_BE_SAVED'] = 'ERROR : Payment Type Cannot be Saved';
+$lang['siya']['payments']['MANAGE_PAYMENT'] = 'Manage Payment';
+$lang['siya']['payments']['EDIT_PAYMENTS'] = 'Edit Payments';
+$lang['siya']['payments']['PAYMENT_TYPES_STATUS_CHANGED'] = 'Payment Types Status Changed';
+$lang['siya']['payments']['PAYMENT_STATUS_CHANGED'] = 'Payment Status Changed';
+$lang['siya']['payments']['PAYMENT_TYPE_:'] = 'Payment Type:';
+$lang['siya']['payments']['USERID'] = 'USERID';
+$lang['siya']['payments']['TITLE'] = 'TITLE';
+$lang['siya']['payments']['DESCRIPTION'] = 'Description';
+$lang['siya']['payments']['ADD_PAYMENT'] = 'Add Payment';
+$lang['siya']['payments']['PAYMENT_DATE'] = 'Payment Date';
+$lang['siya']['payments']['PAYMENT_VALUE'] = 'Payment Value';
+$lang['siya']['payments']['PAYMENT_MODE'] = 'Payment Mode';
+$lang['siya']['payments']['CHECK_/_DD_NUMBER'] = 'Check / DD Number';
+$lang['siya']['payments']['BANK_DETAILS'] = 'Bank Details';
+$lang['siya']['payments']['CARD_DETAILS'] = 'Card Details';
+$lang['siya']['payments']['DISCOUNT'] = 'Discount';
+$lang['siya']['payments']['TAX'] = 'Tax';
+$lang['siya']['payments']['NAME'] = 'Name';
+$lang['siya']['payments']['DESCRIPTION'] = 'Description';
+
+$lang['siya']['payments']['DELETE']='Delete';
+$lang['siya']['payments']['EDIT']='Edit';

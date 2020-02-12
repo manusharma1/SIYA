@@ -31,22 +31,22 @@
 <table width="100%" border="0" bgcolor="#CC9933">
  
   <tr>
-    <td width="17%" bgcolor="#CCCC66">File Location </td>
+    <td width="17%" bgcolor="#CCCC66"><?php echo $lang['siya']['fileuploader']['FILE_LOCATION'];?></td>
     <td width="83%" bgcolor="#CCCC66"><?php echo $filelocation_menu_placeholder; ?></td>
   </tr>
   
   <tr>
-    <td width="17%" bgcolor="#CCCC66">File Name </td>
+    <td width="17%" bgcolor="#CCCC66"><?php echo $lang['siya']['fileuploader']['FILE_NAME'];?></td>
     <td width="83%" bgcolor="#CCCC66"><input type="text" name="filename" id="filename" size="95" title="File Name"/></td>
   </tr>
 
    <tr>
-    <td bgcolor="#CCCC66">File Description </td>
+    <td bgcolor="#CCCC66"><?php echo $lang['siya']['fileuploader']['FILE_DESCRIPTION'];?></td>
     <td bgcolor="#CCCC66"><textarea name="filedescription" id="filedescription" cols="73" width="5" title="File Description"></textarea></td>
   </tr>
 
   <tr>
-    <td width="17%" bgcolor="#CCCC66">Choose File </td>
+    <td width="17%" bgcolor="#CCCC66"><?php echo $lang['siya']['fileuploader']['CHOOSE_FILE'];?></td>
     <td width="83%" bgcolor="#CCCC66"><input type="file" name="chosenfile" id="chosenfile" title="Please Choose the File"/>
 </td>
   </tr>

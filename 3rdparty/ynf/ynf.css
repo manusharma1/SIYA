@@ -1,0 +1,383 @@
+/* YUI Niceforms CSS v0.1.02 by Josh Lizarraga @ FreshCut (http://www.freshcutsd.com/) */
+
+/* Based on Niceforms by Lucian Slatineanu (http://www.emblematiq.com/projects/niceforms/) */
+
+form.ynf,
+form.ynf * {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+form.ynf label {
+	font-family: Trebuchet MS, Helvetica, Arial, sans-serif;
+	font-size: 1.1em;
+	cursor: pointer;
+}
+
+.ynf-clear {
+	clear: both;
+	height: 0;
+	line-height: 0;
+}
+
+.ynf-z {
+	z-index: 30000;
+}
+
+form.ynf input[type="text"] {
+	height: 18px;
+	padding: 2px 0px 2px 5px;
+	line-height: 18px;
+	font-family: Trebuchet MS, Helvetica, Arial, sans-serif;
+	outline: none;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -10px;
+}
+
+.ynf-ie6-text-wrap {
+	height: 18px;
+	padding: 2px 0px 2px 5px;
+	line-height: 18px;
+	outline: none;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -10px;
+}
+
+.ynf-ie6-text {
+	position: relative;
+	top: 2px;
+	left: 4px;
+	font-family: Trebuchet MS, Helvetica, Arial, sans-serif;
+	background: none;
+	border: none;
+	cursor: text;
+}
+
+form.ynf input[type="text"]:focus {
+	height: 18px;
+	padding: 2px 0px 2px 5px;
+	line-height: 18px;
+	outline: none;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -42px;
+}
+
+.ynf-ie6-text-wrap-focus,
+.ynf-ie7-text-focus {
+	height: 18px;
+	padding: 2px 0px 2px 5px;
+	line-height: 18px;
+	outline: none;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -42px !important;
+}
+
+img.ynf-text {
+	width: 5px;
+	height: 22px;
+	vertical-align: bottom;
+	background: transparent url(images/ynf.png) no-repeat scroll -785px -10px;
+}
+
+.ynf-ie7-text-adjust {
+	position: relative;
+	top: -1px;
+}
+
+img.ynf-text-focus {
+	background: transparent url(images/ynf.png) no-repeat scroll -785px -42px;
+}
+
+form.ynf input[type="checkbox"] {
+	display: none;
+}
+
+.ynf-checkbox img {
+	width: 15px;
+	height: 15px;
+	vertical-align: bottom;
+	background: transparent url(images/ynf.png) no-repeat scroll -40px -138px;
+	cursor: pointer;
+}
+
+.ynf-checkbox-hover img {
+	background: transparent url(images/ynf.png) no-repeat scroll -65px -138px;
+}
+
+.ynf-checkbox-focus img {
+	background: transparent url(images/ynf.png) no-repeat scroll -90px -138px;
+}
+
+form.ynf input[type="radio"] {
+	display: none;
+}
+
+.ynf-radio img {
+	width: 15px;
+	height: 15px;
+	vertical-align: bottom;
+	background: transparent url(images/ynf.png) no-repeat scroll -115px -138px;
+	cursor: pointer;
+}
+
+.ynf-radio-hover img {
+	background: transparent url(images/ynf.png) no-repeat scroll -140px -138px;
+}
+
+.ynf-radio-focus img {
+	background: transparent url(images/ynf.png) no-repeat scroll -165px -138px;
+}
+
+form.ynf .ynf-textarea-fieldset {
+	display: -moz-inline-box; /* For Firefox 2. */
+	display: inline-block;
+	margin: 0px 0px 5px 0px;
+	vertical-align: bottom;
+}
+
+form.ynf .ynf-textarea-fieldset .ynf-ie6-textarea-image {
+	position: relative;
+	top: -1px;
+}
+
+form.ynf textarea {
+	padding: 5px 0px 0px 5px;
+	font-family: Trebuchet MS, Helvetica, Arial, sans-serif;
+	font-size: 1.4em;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -170px;
+}
+
+form.ynf textarea:focus {
+	outline: none;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -680px;
+}
+
+
+form.ynf textarea.ynf-ie6-textarea-focus {
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -680px !important;
+}
+
+.ynf-textarea-right {
+	vertical-align: bottom;
+	background: transparent url(images/ynf.png) no-repeat scroll -785px -170px;
+}
+
+.ynf-textarea-right-focus {
+	background: transparent url(images/ynf.png) no-repeat scroll -785px -680px;
+}
+
+.ynf-textarea-bottom {
+	vertical-align: top;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -665px;
+}
+
+.ynf-textarea-bottom-focus {
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -1175px;
+}
+
+.ynf-textarea-corner {
+	vertical-align: top;
+	background: transparent url(images/ynf.png) no-repeat scroll -785px -665px;
+}
+
+.ynf-textarea-corner-focus {
+	background: transparent url(images/ynf.png) no-repeat scroll -785px -1175px;
+}
+
+.ynf-textarea-resize-wrapper {
+	position: relative;
+	float: left;
+	padding: 5px 0px 0px 5px;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -170px;
+}
+
+.ynf-textarea-resize-wrapper-focus {
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -680px;
+}
+
+.ynf-textarea-resize-wrapper .ynf-textarea-corner {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background: transparent url(images/ynf.png) no-repeat scroll -785px -170px;
+}
+
+.ynf-textarea-resize-wrapper .ynf-textarea-corner-focus {
+	background: transparent url(images/ynf.png) no-repeat scroll -785px -680px;
+}
+
+form.ynf textarea.ynf-textarea-resize {
+	background-image: url(images/ynf-resize-right-blur.png), url(images/ynf-resize-bottom-blur.png);
+	background-repeat: no-repeat, no-repeat;
+	background-position: bottom right, bottom left;
+}
+
+form.ynf textarea.ynf-textarea-resize:focus {
+	background-image: url(images/ynf-resize-right-focus.png), url(images/ynf-resize-bottom-focus.png);
+	background-repeat: no-repeat, no-repeat;
+	background-position: bottom right, bottom left;
+}
+
+form.ynf input[type="button"],
+form.ynf input[type="submit"] {
+	display: none;
+}
+
+form.ynf button {
+	display: none;
+}
+
+form.ynf a.ynf-button:link,
+form.ynf a.ynf-button:active,
+form.ynf a.ynf-button:visited {
+	display: -moz-inline-box; /* For Firefox 2. */
+	display: inline-block;
+	padding: 0px 0px 0px 5px;
+	line-height: 22px;
+	color: #103040;
+	font-family: Trebuchet MS, Helvetica, Arial, sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-decoration: none;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -74px;
+}
+
+form.ynf a.ynf-button:hover {
+	color: #206080;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -106px;
+}
+
+form.ynf a.ynf-button:link .ynf-button-right,
+form.ynf a.ynf-button:active .ynf-button-right,
+form.ynf a.ynf-button:visited .ynf-button-right {
+	vertical-align: top;
+	background: transparent url(images/ynf.png) no-repeat scroll -190px -138px;
+}
+
+form.ynf a.ynf-button:hover .ynf-button-right {
+	background: transparent url(images/ynf.png) no-repeat scroll -205px -138px;
+}
+
+.ynf-ie6-button-fix {
+	margin: 0px 5px 0px 0px !important;
+}
+
+.ynf-ie6-button-fix span {
+	position: relative;
+	top: 2px;
+}
+
+form.ynf select {
+	display: none;
+}
+
+.ynf-select-wrapper {
+	position: relative;
+	display: -moz-inline-stack; /* For Firefox 2. */
+	display: inline-block;
+}
+
+form.ynf a.ynf-select-button:link,
+form.ynf a.ynf-select-button:active,
+form.ynf a.ynf-select-button:visited {
+	position: relative;
+	display: block;
+	padding: 0px 0px 0px 5px;
+	line-height: 22px;
+	color: #103040;
+	font-family: Trebuchet MS, Helvetica, Arial, sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-decoration: none;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -74px;
+}
+
+form.ynf a.ynf-select-button:hover {
+	color: #206080;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -106px;
+}
+
+form.ynf a.ynf-select-button span {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+form.ynf a.ynf-select-button:link .ynf-button-right,
+form.ynf a.ynf-select-button:active .ynf-button-right,
+form.ynf a.ynf-select-button:visited .ynf-button-right {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	background: transparent url(images/ynf.png) no-repeat scroll -765px -74px;
+}
+
+form.ynf a.ynf-select-button:hover .ynf-button-right {
+	background: transparent url(images/ynf.png) no-repeat scroll -765px -106px;
+}
+
+a.ynf-ie6-select-fix span {
+	position: relative;
+	top: 2px;
+}
+
+a.ynf-ie6-select-fix img.ynf-button-right {
+	margin: 0px -1px 0px 0px;
+}
+
+a.ynf-ie6-select-fix img.ynf-ie6-select-fix {
+	visibility: hidden;
+	vertical-align: bottom;
+}
+
+div.ynf-ie6-select-fix .ynf-dropdown-left {
+	left: -6px;
+}
+
+.ynf-options-wrapper {
+	display: block;
+	position: absolute;
+	top: 22px;
+	right: 10px;
+	height: 0px;
+	overflow: hidden;
+}
+
+div.ynf-options-container {
+	position: relative;
+}
+
+div.ynf-options-container ul {
+	padding: 0px 0px 5px 0px;
+	border: 1px solid #86a3bf;
+	border-width: 0px 1px 1px 1px;
+	background: #eff8ff;
+}
+
+div.ynf-options-container ul li a:link,
+div.ynf-options-container ul li a:active,
+div.ynf-options-container ul li a:visited {
+	display: block;
+	padding: 5px;
+	font-family: Trebuchet MS, Helvetica, Arial, sans-serif;
+	font-size: 1.1em;
+	white-space: nowrap;
+	text-decoration: none;
+}
+
+div.ynf-options-container ul li a:hover {
+	outline: 1px solid #86a3bf;
+	outline-width: 1px 0px 1px 0px;
+	text-decoration: underline;
+	background: transparent url(images/ynf.png) no-repeat scroll -30px -190px;
+}
+
+.ynf-dropdown-left {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: transparent url(images/ynf.png) no-repeat scroll -10px -138px;
+}
+
+.ynf-dropdown-right {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background: transparent url(images/ynf.png) no-repeat scroll -25px -138px;
+}

@@ -1,0 +1,22 @@
+.boxstyle1{
+margin-left:auto;
+margin-right:auto;
+width:220px; 
+border:1px solid #E1E1E1;
+background-color: #F5F5F5;
+}
+
+.boxstyle2{
+width:220px; 
+height:55px; 
+color:#FFFFFF;
+font-weight:bold;
+background-color: #4C443C;
+}
+
+.boxstyle3{
+width:220px; 
+color:#000000;
+font-weight:normal;
+background-color: #F5F5F5;
+}

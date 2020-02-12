@@ -1,6 +1,13 @@
 <?php
 	$id = _ACTION_VIEW_PARAMETER_ID;
 	
+	MainSystem::CheckIDExists('content','id',$id,'cms/managePages/');
+
+	$accessreturnmessage = MainSystem::CheckOtherUsersActionAccess('content','addedby',$id);
+	if($accessreturnmessage != 'OK'){
+	MainSystem::URLForwarder(MainSystem::URLCreator('errorhandler/displayError/'.$accessreturnmessage.'/'));
+	}
+	
 	// Define PlaceHolders
 	$page_name_placeholder = '';
 	$page_title_placeholder = '';
@@ -12,6 +19,8 @@
 	$meta_keys_placeholder = '';
 	$meta_desc_placeholder = '';
 
+
+	MainSystem::CheckOtherUsersActionAccess('content','addedby',$id);
 
 	// Get Page Data
 	$columns = array('id','pid','menuid','name','title','data','datamore','data2','data2more','metadesc','metakeys');
@@ -36,7 +45,7 @@
 	}
 	}else{ // if Page Doesn't Exists
 	$_SESSION['message'] = 'Page Does Not Exists';
-	MainSystem::URLForwarder(MainSystem::URLCreator('cms/getAdminArea/'));
+	MainSystem::URLForwarder(MainSystem::URLCreator('cms/managePages/'));
 	}
 	}else{
 	trigger_error('SQL Error');
@@ -48,7 +57,7 @@
 	global $htmlarray;
 	$htmlarray = array();
 	$htmlarray[]['select']['nameid'] = 'menuid';
-	$htmlarray[]['select']['onChange'] = MainSystem::URLCreator('cms/getPagesByMenu/'.$id.'/','ajax','get','getMenuID',PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE,false);
+	$htmlarray[]['select']['onChange'] = MainSystem::URLCreator('cms/getPagesByMenu/'.$id.'/','ajax','get','getMenuID','parentpage',false);
 	$htmlarray[]['select']['close'] = '';
 
 	$htmlarray[]['option']['start'] = '';
@@ -109,7 +118,7 @@
 	$htmlarray[]['option']['data'] = '------------------';
 	$htmlarray[]['option']['end'] = '';
 
-	function recursivePageMenu($menuid='',$pagelevel){
+	function recursivePageMenu2($menuid='',$pagelevel){
 	global $htmlarray,$parentpageid,$pagelevel,$pagemenuid,$pageid;
 	$pagelevel++;
 	$columns = array('id','pid','name');
@@ -137,7 +146,7 @@
 	$htmlarray[]['option']['data'] = $str.$sqlObj->getCleanData($resultsetmenu->name);
 	$htmlarray[]['option']['end'] = '';
 	if($resultsetmenu->id != $menuid){
-	recursivePageMenu($resultsetmenu->id,$pagelevel);
+	recursivePageMenu2($resultsetmenu->id,$pagelevel);
 	$pagelevel--;
 	}
 	}
@@ -145,7 +154,7 @@
 	}
 	}
 
-	recursivePageMenu(0,0);
+	recursivePageMenu2(0,0);
 
 	$htmlarray[]['select']['end'] = '';
 	$parent_page_placeholder = $HTMLObj->HTMLCreator($htmlarray);
@@ -157,67 +166,91 @@
 	$input_data2_placeholder = MainSystem::HTMLEditorInit('data2',$sqlObj->getCleanData($resultsetpagecontents->data2));
 	
 	$input_data2more_placeholder = MainSystem::HTMLEditorInit('data2more',$sqlObj->getCleanData($resultsetpagecontents->data2more));
+
+
+	if(isset($_POST) && isset($_POST['issubmit'])){
+	$page_name_placeholder = (isset($_POST['name']))?$_POST['name']:'';
+	$page_title_placeholder = (isset($_POST['title']))?$_POST['title']:'';
+
+	}
 ?>
 
+	<script>
+	$(document).ready(function(){
+	$("#addform").validate();
+	});
+	</script>
+	
+	<?php
+	if(PROJ_RUN_AJAX==1){
+	$formaction = MainSystem::URLCreator('cms/savePage/'.$id.'/','ajax','post','',PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE,false);
+	}else{
+	$formaction = MainSystem::URLCreator('cms/savePage/'.$id.'/');
+	}
+	?>
 
-
-<form id="editpage" name="editpage" method="post" action="<?php echo MainSystem::URLCreator('cms/savePage/'.$id.'/') ?>">
-<table width="100%" border="0" bgcolor="#CC9933">
-  <tr>
-    <td width="17%" bgcolor="#CCCC66">SEO URL </td>
-    <td width="83%" bgcolor="#CCCC66"><?php echo MainSystem::URLCreator('cms/getContent/'.$id.'/');?></td>
-  </tr>  
+	<form id="addform" name="addform" method="post" action="<?php echo $formaction; ?>">
+	
+	<fieldset>
+	<legend><?php echo $lang['siya']['cms']['EDIT_PAGE']; ?></legend>	
+	<ol>
+		<li>
+		<label for="seourl"><?php echo $lang['siya']['cms']['SEO_URL']; ?></label>
+		<?php echo MainSystem::URLCreator('cms/getContent/'.$id.'/');?>
+  </li>  
   
-  <tr>
-    <td width="17%" bgcolor="#CCCC66">Page Name </td>
-    <td width="83%" bgcolor="#CCCC66"><input type="text" name="name" size="95" value="<?php echo $page_name_placeholder; ?>" /></td>
-  </tr>
-  <tr>
-    <td width="17%" bgcolor="#CCCC66">Page Title </td>
-    <td width="83%" bgcolor="#CCCC66"><input type="text" name="title" size="95" value="<?php echo $page_title_placeholder; ?>" /></td>
-  </tr>
+  <li>
+   <label for="name"><?php echo $lang['siya']['cms']['PAGE_NAME']; ?></label>
+    <input type="text" name="name" size="95" value="<?php echo $page_name_placeholder; ?>" />
+  </li>
+  <li>
+    <label for="title"><?php echo $lang['siya']['cms']['PAGE_TITLE']; ?> </label>
+    <input type="text" name="title" size="95" value="<?php echo $page_title_placeholder; ?>" />
+  </li>
 
-  <tr>
-    <td bgcolor="#CCCC66">Menu </td>
-    <td bgcolor="#CCCC66"><?php echo $menu_placeholder; ?></td>
-  </tr>
+  <li>
+    <label for="menu"><?php echo $lang['siya']['cms']['MENU']; ?> </label>
+    <?php echo $menu_placeholder; ?>
+  </li>
 
-  <tr>
-    <td bgcolor="#CCCC66">Parent Page </td>
-    <td bgcolor="#CCCC66"><div id="<?php echo PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE; ?>" name="<?php echo PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE; ?>"><?php echo $parent_page_placeholder; ?></div></td>
-  </tr>
+  <li>
+    <label for="parentpage"><?php echo $lang['siya']['cms']['PARENT_PAGE']; ?></label><br />
+    <div id="parentpage" name="parentpage"><?php echo $parent_page_placeholder; ?></div>
+  </li>
 
-  <tr>
-    <td bgcolor="#CCCC66">Page Content </td>
-    <td bgcolor="#CCCC66"><?php  echo $input_data_placeholder; ?></td>
-  </tr>
+  <li>
+    <label for="pagecontent"><?php echo $lang['siya']['cms']['PAGE_CONTENT']; ?></label><br />
+    <?php  echo $input_data_placeholder; ?>
+  </li>
 
-  <tr>
-    <td bgcolor="#CCCC66">Page Content (MORE OPTION)</td>
-    <td bgcolor="#CCCC66"><?php  echo $input_datamore_placeholder; ?></td>
-  </tr>
+  <li>
+    <label for="pagecontentmore"><?php echo $lang['siya']['cms']['PAGE_CONTENT_MORE']; ?></label><br /><br />
+    <?php  echo $input_datamore_placeholder; ?>
+  </li>
 
-  <tr>
-    <td bgcolor="#CCCC66">Page Content 2 (if you type any content here then page will break into 2 divisions : Left and Right) </td>
-    <td bgcolor="#CCCC66"><?php  echo $input_data2_placeholder; ?></td>
-  </tr>
-  <tr>
-    <td bgcolor="#CCCC66">Page Content 2 (MORE OPTION) </td>
-    <td bgcolor="#CCCC66"><?php  echo $input_data2more_placeholder; ?></td>
-  </tr>
-   <tr>
-    <td bgcolor="#CCCC66">Meta Keywords </td>
-    <td bgcolor="#CCCC66"><textarea name="metakeys" cols="85" rows="5"><?php echo $meta_keys_placeholder; ?></textarea></td>
-  </tr>
+  <li>
+    <label for="pagecontent2"><?php echo $lang['siya']['cms']['PAGE_CONTENT2']; ?></label><br /><br /><br /><br /><br />
+    <?php  echo $input_data2_placeholder; ?>
+  </li>
+  <li>
+    <label for="pagecontentmore2"><?php echo $lang['siya']['cms']['PAGE_CONTENT2_MORE']; ?></label><br /><br />
+    <?php  echo $input_data2more_placeholder; ?>
+  </li>
+   <li>
+    <label for="metakeys"><?php echo $lang['siya']['cms']['META_KEYWORDS']; ?> </label>
+    <textarea name="metakeys" cols="50" rows="5"><?php echo $meta_keys_placeholder; ?></textarea>
+  </li>
 
-   <tr>
-    <td bgcolor="#CCCC66">Meta Description </td>
-    <td bgcolor="#CCCC66"><textarea name="metadesc" cols="85" rows="5"><?php echo $meta_desc_placeholder; ?></textarea></td>
-  </tr>
+   <li>
+    <label for="metadesc"><?php echo $lang['siya']['cms']['META_DESCRIPTION']; ?> </label>
+    <textarea name="metadesc" cols="50" rows="5"><?php echo $meta_desc_placeholder; ?></textarea>
+  </li>
+</ol>
 
-  <tr>
-    <td colspan="2" bgcolor="#CCCC66" align="center"><input type="Submit" name="Submit" value="Save Page" /></td>
-  </tr>
+<fieldset>
 
-</table>
+	<button type="submit"><?php echo $lang['siya']['cms']['SAVE'];?></button>
+
+</fieldset>
+
 </form>

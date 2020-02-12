@@ -1,5 +1,6 @@
 <?php
-	$parameters = explode(',',_ACTION_VIEW_PARAMETER_ID);
+	//print_r($_GET);
+	//$parameters = explode(',',_ACTION_VIEW_PARAMETER_ID);
 	global $id,$pagemenuid;
 	
 	if(isset($parameters[0])){
@@ -8,8 +9,8 @@
 	$id='';
 	}
 
-	if(isset($parameters[1])){
-	$pagemenuid = $parameters[1];
+	if(isset($_GET['menuid'])){
+	$pagemenuid = $_GET['menuid'];
 	}else{
 	$pagemenuid = '';
 	}

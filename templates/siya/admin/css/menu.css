@@ -1,0 +1,36 @@
+#accordion {
+	list-style: none;
+	padding: 0 0 0 0;
+	font-family:Arial;
+}
+#accordion li{
+	display: block;
+	border: 1px solid #D2D2D2;
+	background-color: #ffffff;
+	color:#000000;
+	font-weight: bold;
+	margin: 1px;
+	cursor: pointer;
+	padding: 5 5 5 7px;
+	list-style: circle;
+}
+#accordion ul {
+	list-style: none;
+	padding: 0 0 0 0;
+	display: none;
+}
+#accordion ul li{
+	font-weight: normal;
+	cursor: auto;
+	background-color: #D2D2D2;
+	padding: 0 0 0 7px;
+}
+#accordion a {
+	text-decoration: none;
+	color:#000;
+}
+#accordion a:hover {
+	text-decoration: underline;
+	background-color: #F0F5F6;
+
+}

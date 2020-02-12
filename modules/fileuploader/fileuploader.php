@@ -8,9 +8,20 @@
 //                                                                       //
 // Copyright (C) 2010 onwards  Manu Sharma  http://www.opentadka.org     //
 //                                                                       //
+// STUDENT INFORMATION YARN (SIYA)								         //
+//          http://www.siya.org.in                                       //
+//                                                                       //
+// Copyright (C) 2012 onwards  Manu Sharma  http://www.siya.org.in       //
+//                                                                       //
+// OPENTADKA FRAMEWORK LICENSE :                                         //
 // This program is free software; you can redistribute it and/or modify  //
 // it under the terms of the GNU General Public License as published by  //
 // the Free Software Foundation; either version 2 of the License, or     //
+// (at your option) any later version.                                   //
+// STUDENT INFORMATION YARN (SIYA) LICENSE :                             //
+// This program is free software; you can redistribute it and/or modify  //
+// it under the terms of the GNU General Public License as published by  //
+// the Free Software Foundation; either version 3 of the License, or     //
 // (at your option) any later version.                                   //
 //                                                                       //
 // This program is distributed in the hope that it will be useful,       //
@@ -20,16 +31,40 @@
 //                                                                       //
 //          http://www.gnu.org/copyleft/gpl.html                         //
 //                                                                       //
-///////////////////////////////////////////////////////////////////////////
+//   OPENTADKA FRAMEWORK & STUDENT INFORMATION YARN (SIYA)               //
+//   FOR LICENCESPLEASE REFER LICENCE PAGE                               //
+//   FOR MORE DETAILS                                                    //
+//                                                                       //
+////////////////////////////////////////////////////////////////////////////
 class fileuploader
 {
+private static $lang;
+
+function SIYA__fileuploader_INIT__(){
+
+global $lang;
+
+self::$lang = $lang;
+
+}
+
+
+function SIYA__fileuploader_INSTALLER__(){
+
+$module_installer_info_array = array();
+
+$module_installer_info_array['module']['info'] = array('description' => '');
+
+return $module_installer_info_array;
+
+}
 
 public function uploadNewFile(){
 	
 	$functionreturnarray = array(); // array that will return to the controller, having all the required data of the placeholders
 
 	$actionviewresult = MainSystem::CallActionView();
-	$functionreturnarray['title_placeholder'] = 'Add New File';
+	$functionreturnarray['title_placeholder'] = self::$lang['siya']['fileuploader']['ADD_NEW_FILE'];
 	$functionreturnarray['main_content_placeholder'] = $actionviewresult;
 	return $functionreturnarray;
 	
@@ -117,7 +152,7 @@ public function manageFiles(){
 	$functionreturnarray = array(); // array that will return to the controller, having all the required data of the placeholders
 
 	$actionviewresult = MainSystem::CallActionView();
-	$functionreturnarray['title_placeholder'] = 'Manage Files';
+	$functionreturnarray['title_placeholder'] = self::$lang['siya']['fileuploader']['MANAGE_FILES'];
 	$functionreturnarray['main_content_placeholder'] = $actionviewresult;
 	return $functionreturnarray;
 	
@@ -131,7 +166,7 @@ public function deleteFile($parameters){
 	$functionreturnarray = array(); // array that will return to the controller, having all the required data of the placeholders
 	
 	$actionviewresult = MainSystem::CallActionView($id);
-	$functionreturnarray['title_placeholder'] = 'Delete a File';
+	$functionreturnarray['title_placeholder'] = self::$lang['siya']['fileuploader']['DELETE_A_FILE'];
 	$functionreturnarray['main_content_placeholder'] = $actionviewresult;
 	return $functionreturnarray;
 

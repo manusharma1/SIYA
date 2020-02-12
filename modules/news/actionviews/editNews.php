@@ -1,6 +1,13 @@
 <?php
 	$id = _ACTION_VIEW_PARAMETER_ID;
 	
+	MainSystem::CheckIDExists('news','id',$id,'news/manageNews/');
+
+	$accessreturnmessage = MainSystem::CheckOtherUsersActionAccess('news','addedby',$id);
+	if($accessreturnmessage != 'OK'){
+	MainSystem::URLForwarder(MainSystem::URLCreator('errorhandler/displayError/'.$accessreturnmessage.'/'));
+	}
+	
 	// Define PlaceHolders
 	$newstitle_placeholder = '';
 	$newstext_placeholder = '';
@@ -13,7 +20,7 @@
 	$sqlObj = new MainSQL();
 	$sqlnewscontents = $sqlObj->SQLCreator('S', 'news', $columns, $conditions, '', '', '');
 	if($resultnewscontents = $sqlObj->FireSQL($sqlnewscontents)){
-	if($sqlObj->getNumRows($resultnewscontents) !=0){ // If News Exists
+	if($sqlObj->getNumRows($resultnewscontents) !=0){ 
 	if($resultsetnewscontents = $sqlObj->FetchResult($resultnewscontents)){
 	
 	$newstitle_placeholder = $sqlObj->getCleanData($resultsetnewscontents->newstitle);
@@ -33,45 +40,60 @@
 ?>
 
 
-<!-- page specific scripts -->
-<script type="text/javascript" charset="utf-8">
-	$(function()
-	{
-		Date.format = 'mm/dd/yyyy';
-		$('#newsdate').datePicker({autoFocusNextInput: true});
+<script>
+	$(function() {
+		$( "#newsdate" ).datepicker();
 	});
 </script>
-
-<form id="editnews" name="editnews" method="post" action="<?php echo MainSystem::URLCreator('news/saveNews/'.$id.'/') ?>">
-<table width="100%" border="0" bgcolor="#CC9933">
-  
-  <tr>
-    <td width="17%" bgcolor="#CCCC66">News Title </td>
-    <td width="83%" bgcolor="#CCCC66"><input type="text" name="newstitle" id="newstitle" size="95" title="News Title" value="<?php echo $newstitle_placeholder; ?>" /></td>
-  </tr>
-   <tr>
-    <td bgcolor="#CCCC66">News Text </td>
-    <td bgcolor="#CCCC66"><textarea  name="newstext" id="newstext" cols="73" width="5" title="News Text"><?php echo $newstext_placeholder; ?></textarea></td>
-  </tr>
-
-  <tr>
-    <td width="17%" bgcolor="#CCCC66">News Date </td>
-    <td width="83%" bgcolor="#CCCC66"><input type="text" name="newsdate" id="newsdate" class="date-pick" value="<?php echo $newsdate_placeholder; ?>" /></td>
-  </tr>
-
-  <tr>
-    <td colspan="2" bgcolor="#CCCC66" align="center"><input type="Submit" name="Submit" value="Save Page" /></td>
-  </tr>
-
-</table>
-</form>
-
 <?php
-$HTMLObj = new MainHTML();
-$htmlarray = array();
-
-$htmlarray[]['js']['js'] = 'notempty=newstitle,newstext,newsdate:onsubmit=addnewnews:alert:default';
-$validation = $HTMLObj->HTMLCreator($htmlarray);
-
-echo $validation;
+if(PROJ_RUN_AJAX==1){
+	if(isset($_SESSION['message'])){
+	echo $_SESSION['message'];
+	}
+}
 ?>
+
+<script>
+$(document).ready(function(){
+$("#editnewsform").validate();
+});
+</script>
+	<?php
+	if(PROJ_RUN_AJAX==1){
+	$formaction = MainSystem::URLCreator('news/saveNews/'.$id.'/','ajax','post','',PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE,false);
+	}else{
+	$formaction = MainSystem::URLCreator('news/saveNews/'.$id.'/');
+	}
+	?>
+
+	<form id="editnewsform" name="editnewsform" method="post" action="<?php echo $formaction; ?>">
+
+
+<fieldset>
+	<legend>Edit News</legend>	
+		
+		<ol>
+		<li>
+		<label for="newstitle"><?php echo $lang['siya']['news']['NEWS_TITLE']; ?></label>
+		<input type="text" name="newstitle" id="newstitle" size="30" title="<?php echo $lang['siya']['news']['NEWS_TITLE']; ?>" value="<?php echo $newstitle_placeholder; ?>" <?php echo _FORM_FINAL; ?>/>
+		</li>
+
+		<li>
+		<label for="newstext"><?php echo $lang['siya']['news']['NEWS_TEXT']; ?></label>
+		<textarea name="newstext" id="newstext" cols="73" width="5" title="<?php echo $lang['siya']['news']['NEWS_TEXT']; ?>" <?php echo _FORM_FINAL; ?>><?php echo $newstext_placeholder; ?></textarea>
+		</li>
+		
+		<li>
+		<label for="newstext"><?php echo $lang['siya']['news']['NEWS_DATE']; ?></label>
+		<input type="text" name="newsdate" id="newsdate" title="<?php echo $lang['siya']['news']['NEWS_DATE']; ?>" value="<?php echo $newsdate_placeholder; ?>" <?php echo _FORM_FINAL; ?>/>
+		</li>
+
+		</ol>
+
+<fieldset>
+
+<button type="submit">Save</button>
+
+</fieldset>
+
+</form>

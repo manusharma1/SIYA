@@ -1,0 +1,19 @@
+<?php
+$lang['siya']['opentadkainstaller']['GET_SYSTEM_INFO'] = 'Get System Info';
+$lang['siya']['opentadkainstaller']['Install_Module'] = 'install Module';
+$lang['siya']['opentadkainstaller']['INSTALLING_MODULE'] = 'Installing Module';
+$lang['siya']['opentadkainstaller']['UNINSTALL_MODULE'] = 'Uninstall Module';
+$lang['siya']['opentadkainstaller']['UNINSTALLING_MODULE'] = 'Uninstalling Module';
+$lang['siya']['opentadkainstaller']['DEACTIVATE_MODULE'] = 'Deactivate Module';
+$lang['siya']['opentadkainstaller']['DEACTIVATING_MODULE'] = 'Deactivating Module';
+$lang['siya']['opentadkainstaller']['ACTIVATE_MODULE'] = 'Activate Module';
+$lang['siya']['opentadkainstaller']['ACTIVATING_MODULE'] = 'Register New Member';
+$lang['siya']['opentadkainstaller']['INSTALL_BLOCK'] = 'Install Block';
+$lang['siya']['opentadkainstaller']['INSTALLING_BLOCK'] = 'Installing Block';
+$lang['siya']['opentadkainstaller']['UNINSTALL_BLOCK'] = 'Uninstall Block';
+$lang['siya']['opentadkainstaller']['UNINSTALLING_BLOCK'] = 'Uninstalling Block';
+$lang['siya']['opentadkainstaller']['DEACTIVATE_BLOCK'] = 'Deactivate Block';
+$lang['siya']['opentadkainstaller']['DEACTIVATING_BLOCK'] = 'Deactivating Block';
+$lang['siya']['opentadkainstaller']['ACTIVATE_BLOCK'] = 'Activate Block';
+$lang['siya']['opentadkainstaller']['ACTIVATING_BLOCK'] = 'Activating Block';
+$lang['siya']['opentadkainstaller']['INSTALLER_RESULTS'] = 'Installer Results';

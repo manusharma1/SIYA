@@ -1,0 +1,29 @@
+.boxstyle0{
+width:220px;
+height:45px;
+background : url(../images/du_building_bg.png) no-repeat 0 0;
+margin-left:1px;
+margin-right:1px;
+display: block;
+}
+
+.boxstyle1{
+width:220px; 
+border:1px solid #FFD455;
+background-color: #FFD455;
+}
+
+.boxstyle2{
+width:220px; 
+height:55px; 
+color:#2D2D2D;
+font-weight:bold;
+background-color: #FFD455;
+}
+
+.boxstyle3{
+width:220px; 
+color:#000000;
+font-weight:normal;
+background-color: #FFFFD4;
+}

@@ -6,7 +6,7 @@
 	global $htmlarray;
 	$htmlarray = array();
 	$htmlarray[]['select']['nameid'] = 'menuid';
-	$htmlarray[]['select']['onChange'] = MainSystem::URLCreator('cms/getPagesByMenu/','ajax','get','getMenuID',PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE,false);
+	$htmlarray[]['select']['onChange'] = MainSystem::URLCreator('cms/getPagesByMenu/','ajax','get','getMenuID','parentpage',false);
 	$htmlarray[]['select']['close'] = '';
 
 	$htmlarray[]['option']['start'] = '';
@@ -62,68 +62,82 @@
 ?>
 
 
+	<script>
+	$(document).ready(function(){
+	$("#formaddnewpage").validate();
+	});
+	</script>
+	
+	<?php
+	if(PROJ_RUN_AJAX==1){
+	$formaction = MainSystem::URLCreator('cms/savePage/','ajax','post','',PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE,false);
+	}else{
+	$formaction = MainSystem::URLCreator('cms/savePage/');
+	}
+	?>
 
-<form id="addnewpage" name="addnewpage" method="post" action="<?php echo MainSystem::URLCreator('cms/savePage/') ?>" onsubmit="return JSMainFunction();">
-<table width="100%" border="0" bgcolor="#CC9933">
-  <tr>
-    <td width="17%" bgcolor="#CCCC66">Page Name </td>
-    <td width="83%" bgcolor="#CCCC66"><input type="text" name="name" id="name" size="95"/></td>
-  </tr>
-  <tr>
-    <td width="17%" bgcolor="#CCCC66">Page Title </td>
-    <td width="83%" bgcolor="#CCCC66"><input type="text" name="title" id="title" size="95"/></td>
-  </tr>
+	<form id="formaddnewpage" name="formaddnewpage" method="post" action="<?php echo $formaction; ?>">
+	
+	<fieldset>
+	<legend><?php echo $lang['siya']['cms']['ADD_NEW_PAGE'];?></legend>	
+	<ol>
+		<li>
+		<label for="pagename"><?php echo $lang['siya']['cms']['PAGE_NAME']; ?> </label>
+		<input type="text" name="name" id="name" size="95" <?php echo _FORM_FINAL; ?>/>
+		</li>
+  
+		<li>
+		<label for="pagetitle"><?php echo $lang['siya']['cms']['PAGE_TITLE']; ?> </label>
+		<input type="text" name="title" id="title" size="95" <?php echo _FORM_FINAL; ?>/>
+		</li>
 
-  <tr>
-    <td bgcolor="#CCCC66">Menu</td>
-    <td bgcolor="#CCCC66"><?php echo $menu_placeholder; ?></td>
-  </tr>
+		<li>
+		<label for="menu"><?php echo $lang['siya']['cms']['MENU']; ?></label>
+		<?php echo $menu_placeholder; ?>
+		</li>
 
-  <tr>
-    <td bgcolor="#CCCC66">Parent Page</td>
-    <td bgcolor="#CCCC66"><div id="<?php echo PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE; ?>" name="<?php echo PROJ_AJAX_DEFAULT_HTML_ID_FOR_TEMPLATE; ?>"></div></td>
-  </tr>
 
-  <tr>
-    <td bgcolor="#CCCC66">Page Content </td>
-    <td bgcolor="#CCCC66"><?php  echo $input_data_placeholder; ?></td>
-  </tr>
-  <tr>
-    <td bgcolor="#CCCC66">Page Content (MORE OPTION)</td>
-    <td bgcolor="#CCCC66"><?php  echo $input_datamore_placeholder; ?></td>
-  </tr>
-  <tr>
-    <td bgcolor="#CCCC66">Page Content 2 (if you type any content here then page will break into 2 divisions : Left and Right) </td>
-    <td bgcolor="#CCCC66"><?php  echo $input_data2_placeholder; ?></td>
-  </tr>
-  <tr>
-    <td bgcolor="#CCCC66">Page Content 2 (MORE OPTION) </td>
-    <td bgcolor="#CCCC66"><?php  echo $input_data2more_placeholder; ?></td>
-  </tr>
-   <tr>
-    <td bgcolor="#CCCC66">Meta Keywords </td>
-    <td bgcolor="#CCCC66"><textarea name="metakeys" cols="85" rows="5"></textarea></td>
-  </tr>
+		<li>
+		<label for="parentpage"><?php echo $lang['siya']['cms']['PARENT_PAGE']; ?></label><br />
+		<div id="parentpage" name="parentpage"></div>
+		</li>
 
-   <tr>
-    <td bgcolor="#CCCC66">Meta Description </td>
-    <td bgcolor="#CCCC66"><textarea name="metadesc" cols="85" rows="5"></textarea></td>
-  </tr>
+		<li>
+		<label for="pagecontent"><?php echo $lang['siya']['cms']['PAGE_CONTENT'];?></label><br />
+		<?php  echo $input_data_placeholder; ?>
+		</li>
 
-  <tr>
-    <td colspan="2" bgcolor="#CCCC66" align="center"><input type="Submit" name="Submit" value="Add New Page" /></td>
-  </tr>
+		<li>
+		<label for="pagecontentmore"><?php echo $lang['siya']['cms']['PAGE_CONTENT_MORE'];?></label><br /><br />
+		<?php  echo $input_datamore_placeholder; ?>
+		</li>
 
-</table>
+		<li>
+		<label for="pagecontent2"><?php echo $lang['siya']['cms']['PAGE_CONTENT2'];?> </label><br /><br /><br /><br /><br />
+	    <?php  echo $input_data2_placeholder; ?>
+		</li>
+
+		<li>
+		<label for="pagecontentmore2"><?php echo $lang['siya']['cms']['PAGE_CONTENT2_MORE'];?></label><br /><br />
+	    <?php  echo $input_data2more_placeholder; ?>
+		</li>
+
+		<li>
+		<label for="metakeywords"><?php echo $lang['siya']['cms']['META_KEYWORDS'];?> </label>
+		<textarea name="metakeys" cols="85" rows="5"></textarea>
+		</li>
+
+		<li>
+		<label for="metadescription"><?php echo $lang['siya']['cms']['META_DESCRIPTION'];?></label>
+	    <textarea name="metadesc" cols="85" rows="5"></textarea>
+		</li>
+
+		</ol>
+
+<fieldset>
+
+	<button type="submit"><?php echo $lang['siya']['cms']['SAVE'];?></button>
+
+</fieldset>
+
 </form>
-
-
-<?php
-unset($htmlarray);
-$htmlarray = array();
-
-$htmlarray[]['js']['js'] = 'notempty=name,title,menuid:onsubmit=addnewpage:alert:default';
-$validation = $HTMLObj->HTMLCreator($htmlarray);
-
-echo $validation;
-?>

@@ -1,5 +1,13 @@
 <?php
 	$id = _ACTION_VIEW_PARAMETER_ID; // Page ID //
+	
+	
+	MainSystem::CheckIDExists('content','id',$id,'cms/managePages/');
+
+	$accessreturnmessage = MainSystem::CheckOtherUsersActionAccess('content','addedby',$id);
+	if($accessreturnmessage != 'OK'){
+	MainSystem::URLForwarder(MainSystem::URLCreator('errorhandler/displayError/'.$accessreturnmessage.'/'));
+	}
 
 	// Define Placeholders
 	$page_name_placeholder = '';
@@ -24,8 +32,8 @@
 
 ?>
 
-<table width="100%" border="0" bgcolor="#CC9933" align="center">
-<tr>
-<td width="100%" bgcolor="#CCCC66" align="center"><br /><b>Are you sure you want to delete this Page : "<?php echo $page_name_placeholder; ?>" ? <br /> You cannot undo this action once confirmed. </b> <br /><br /> <input type="button" onclick="JavaScript:document.location.href='<?php echo MainSystem::URLCreator($delete_page_url);?>';" value="Yes delete this Page"> <input type="button" onclick="JavaScript:document.location.href='<?php echo MainSystem::URLCreator('cms/managePages/');?>';" value="Cancel"> <br /><br /></td>
+<table width="100%" class="tableclass" align="center">
+<tr class="trclass">
+<td width="100%" class="tdclass" align="center"><br /><b><?php echo $lang['siya']['cms']['ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_PAGE'];?> "<?php echo $page_name_placeholder; ?>" ? <br /><?php echo $lang['siya']['cms']['ACTION_CANNOT_UNDO'];?></b> <br /><br /> <input type="button" onclick="JavaScript:document.location.href='<?php echo MainSystem::URLCreator($delete_page_url);?>';" value="Yes delete this Page"> <input type="button" onclick="JavaScript:document.location.href='<?php echo MainSystem::URLCreator('cms/managePages/');?>';" value="Cancel"> <br /><br /></td>
 </tr>
 </table>

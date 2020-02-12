@@ -1,0 +1,16 @@
+test_pdf2swf = 1
+test_pdf2json = ""
+allowcache = 1
+splitmode = ""
+path.pdf = "d:\wamp\siyauploads\"
+path.swf = "d:\wamp\siyauploads\"
+cmd.conversion.singledoc = "\"d:\Program Files\SWFTools\pdf2swf.exe\" \"{path.pdf}{pdffile}\" -o \"{path.swf}{pdffile}.swf\" -f -T 9 -t -s storeallcharacters"
+cmd.conversion.splitpages = "\"d:\Program Files\SWFTools\pdf2swf.exe\" \"{path.pdf}{pdffile}\" -o \"{path.swf}{pdffile}%.swf\" -f -T 9 -t -s storeallcharacters -s linknameurl"
+cmd.searching.extracttext = "\"d:\Program Files\SWFTools\swfstrings.exe\" \"{path.swf}{swffile}\""
+pdf2swf = 1
+admin.username = "admin"
+admin.password = "admin1234"
+licensekey = ""
+cmd.conversion.renderpage = ""
+cmd.conversion.rendersplitpage = ""
+cmd.conversion.jsonfile = ""

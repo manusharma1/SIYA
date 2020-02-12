@@ -1,6 +1,14 @@
 <?php
 	$id = _ACTION_VIEW_PARAMETER_ID; // Page ID //
 	
+	
+	MainSystem::CheckIDExists('menu','id',$id,'cms/manageMenus/');
+
+	$accessreturnmessage = MainSystem::CheckOtherUsersActionAccess('menu','addedby',$id);
+	if($accessreturnmessage != 'OK'){
+	MainSystem::URLForwarder(MainSystem::URLCreator('errorhandler/displayError/'.$accessreturnmessage.'/'));
+	}
+	
 	// define placeholders
 	
 	$menu_name_placeholder = '';
@@ -25,8 +33,8 @@
 
 ?>
 
-<table width="100%" border="0" bgcolor="#CC9933" align="center">
-<tr>
-<td width="100%" bgcolor="#CCCC66" align="center"><br /><b>Are you sure you want to delete this Menu : "<?php echo $menu_name_placeholder; ?>" ? <br /> IMPORTANT : This action will also delete all Sub-Menus under this Menu, This will also unlink any Page linked with this menu.<br />You cannot undo this action once confirmed. </b> <br /><br /> <input type="button" onclick="JavaScript:document.location.href='<?php echo MainSystem::URLCreator($delete_menu_url);?>';" value="Yes delete this Menu"> <input type="button" onclick="JavaScript:document.location.href='<?php echo MainSystem::URLCreator('cms/manageMenus');?>';" value="Cancel"> <br /><br /></td>
+<table width="100%" class="tableclass" align="center">
+<tr class="trclass">
+<td width="100%" class="tdclass" align="center"><br /><b><?php echo $lang['siya']['cms']['ARE_YOU_SURE_YOU_WANT_TO_DELETE_THIS_MENU'];?> "<?php echo $menu_name_placeholder; ?>" <br /> <?php echo $lang['siya']['cms']['THIS_WILL_ALSO_DELETE_SUBMENU'];?><br /><?php echo $lang['siya']['cms']['ACTION_CANNOT_UNDO'];?></b> <br /><br /> <input type="button" onclick="JavaScript:document.location.href='<?php echo MainSystem::URLCreator($delete_menu_url);?>';" value="Yes delete this Menu"> <input type="button" onclick="JavaScript:document.location.href='<?php echo MainSystem::URLCreator('cms/manageMenus/');?>';" value="Cancel"> <br /><br /></td>
 </tr>
 </table>
