@@ -1,0 +1,23 @@
+/* CSS Document 
+Author: Shahid Reza
+*/
+::selection{ background: #56cff7; color: white; /* Safari */ }
+::-moz-selection{ background: #56cff7; color: white; /* Firefox */ }
+img{ border:0;}
+h1, h2, h3{font-weight:normal; color:#000000; line-height:24px;}
+h1{font-size:24px;}
+h2{font-size:20px;}
+img{border:0;}
+p{margin:13px 0;}
+blockquote{display:block;}
+
+.whitetext{font-weight:normal; color:#FFFFFF; line-height:24px;}
+.whitetextbold{font-weight:bolder; color:#FFFFFF; line-height:24px;}
+
+
+body{ 
+font-family:Arial; 
+font-size:14px; 
+font-weight:normal; 
+line-height:20px; 
+}

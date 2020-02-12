@@ -1,0 +1,28 @@
+/* OPENTADKA FRAMEWORK		http://www.opentadka.org */
+
+.box div.topleft {
+	display: block;
+	background: url("images/box-bg.png") top left no-repeat white;
+	padding: 2.0em 0em 0em 2.0em;
+}
+
+.box div.topright {
+	display: block;
+	background: url("images/box-bg.png") top right no-repeat white;
+	padding: 2.0em;
+	margin: -2.0em 0 0 2.0em;
+}
+
+.box div.bottomleft {
+	display: block;
+	height: 45px;
+	margin-top: -2.0em;
+	background: url("images/box-bg.png") bottom left no-repeat white;
+}
+
+.box div.bottomright {
+	display: block;
+	background: url("images/box-bg.png") bottom right no-repeat white;
+	height: 45px;
+	margin-left: 3.0em;
+}
